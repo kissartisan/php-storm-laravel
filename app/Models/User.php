@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class User extends Authenticatable
 {
@@ -39,9 +40,26 @@ class User extends Authenticatable
      */
     protected function casts(): array
     {
+        return
+            [
+                'email_verified_at' => 'datetime',
+                'password' => 'hashed',
+            ];
+    }
+
+    public function test($value = 'test'): array
+    {
+        $test = explode('  ', $value);
+
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'hello' => 'world',
+            'foo' => 'bar',
+            'test ' => $test,
         ];
+    }
+
+    public function test2()
+    {
+        // Hello world
     }
 }
